@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
-<%= render @messages %>
-<%= render 'messages/form', message: @message %>
+<turbo-frame id="messages">
+  <%= render @messages %>
+  <%= render 'messages/form', message: @message %>
+</turbo-frame>
 <%= render @chat_room.users %>
