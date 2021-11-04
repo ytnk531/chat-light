@@ -11,12 +11,17 @@
       <%= link_to "他の部屋に行く", "#", class: "font-bold text-blue-600" %>
     </div>
   </nav>
-  <main class="w-full flex flex-col h-screen">
-    <turbo-frame id="messages" class="space-y-6 overflow-auto pb-20 px-4">
-      <%= render @messages %>
-    </turbo-frame>
+  <main class="w-full flex flex-col h-screen" data-controller="messages">
+    <div
+      data-action="turbo:frame-render->messages#scroll" class="overflow-auto pb-20 px-4"
+      id="messageContainer"
+    >
+      <turbo-frame id="messages" class="space-y-6" >
+        <%= render @messages%>
+      </turbo-frame>
+    </div>
     <div class="py-4">
-      <%= render 'messages/form', message: @message %>
+      <%= render 'messages/form', message: @message, form_options: { data: { 'turbo-frame': 'messages' } } %>
     </div>
   </main>
 </div>

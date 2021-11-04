@@ -1,6 +1,10 @@
-<%= form_with model: message do |f| %>
-  <div class="flex w-full px-2">
-    <%= f.text_field :content, class: "w-full" %>
-    <%= f.submit '送信', class: "text-gray-100 rounded bg-blue-600 w-20 ml-3" %>
+<div data-controller="input" >
+  <div data-action="turbo:submit-start->input#clear">
+    <%= form_with model: message, **form_options do |f| %>
+      <div class="flex w-full px-2" >
+        <%= f.text_field :content, class: "w-full", data: {"input-target": "message"} %>
+        <%= f.submit '送信', class: "text-gray-100 rounded bg-blue-600 w-20 ml-3" %>
+      </div>
+    <% end %>
   </div>
-<% end %>
+</div>
