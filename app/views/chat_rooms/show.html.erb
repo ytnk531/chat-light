@@ -1,14 +1,22 @@
 <p id="notice"><%= notice %></p>
-
-<menu>
-  <div id="users">
-    <%= render @chat_room.users %>
-  </div>
-  <%= link_to "他の部屋に行く", "#" %>
-</menu>
-<main>
-  <turbo-frame id="messages">
-    <%= render @messages %>
-    <%= render 'messages/form', message: @message %>
-  </turbo-frame>
-</main>
+<div class="flex">
+  <nav class="w-60 px-4 py-3 h-screen flex flex-col">
+    <div class="overflow-auto">
+      <h2 class="font-bold font-semibold">参加者</h2>
+      <div id="users" class="mt-4 space-y-2">
+        <%= render @chat_room.users %>
+      </div>
+    </div>
+    <div class="mt-4">
+      <%= link_to "他の部屋に行く", "#", class: "font-bold text-blue-600" %>
+    </div>
+  </nav>
+  <main class="w-full flex flex-col h-screen">
+    <turbo-frame id="messages" class="space-y-6 overflow-auto pb-20 px-4">
+      <%= render @messages %>
+    </turbo-frame>
+    <div class="py-4">
+      <%= render 'messages/form', message: @message %>
+    </div>
+  </main>
+</div>
