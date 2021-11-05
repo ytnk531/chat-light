@@ -13,15 +13,16 @@
   </nav>
   <main class="w-full flex flex-col h-screen" data-controller="messages">
     <div
-      data-action="turbo:frame-render->messages#scroll" class="overflow-auto pb-20 px-4"
-      id="messageContainer"
+      data-action="turbo:before-stream-render->messages#scroll" class="overflow-auto pb-20 px-4"
+      data-messages-target="messages"
     >
-      <turbo-frame id="messages" class="space-y-6" >
+      <%= turbo_stream_from ChatRoom.last, :messages %>
+      <div id="messages" class="space-y-6" >
         <%= render @messages%>
-      </turbo-frame>
+      </div>
     </div>
     <div class="py-4">
-      <%= render 'messages/form', message: @message, form_options: { data: { 'turbo-frame': 'messages' } } %>
+      <%= render 'messages/form', message: @message %>
     </div>
   </main>
 </div>
