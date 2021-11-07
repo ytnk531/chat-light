@@ -1,7 +1,7 @@
 import consumer from './consumer'
 
-consumer.subscriptions.create({ channel: "MatchingChannel", id: "id"}, {
+consumer.subscriptions.create({ channel: "MatchingChannel" }, {
     received(data) {
-        alert(data);
+        location.href = data;
     }
 })
