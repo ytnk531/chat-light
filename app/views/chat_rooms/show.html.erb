@@ -1,22 +1,14 @@
 <p id="notice"><%= notice %></p>
-<div class="flex">
-  <nav class="w-60 px-4 py-3 h-screen flex flex-col">
-    <div class="overflow-auto">
-      <h2 class="font-bold font-semibold">参加者</h2>
-      <div id="users" class="mt-4 space-y-2">
-        <%= render @chat_room.users %>
-      </div>
-    </div>
-    <div class="mt-4">
-      <%= link_to "他の部屋に行く", "#", class: "font-bold text-blue-600" %>
-    </div>
+<div class="flex flex-col">
+  <nav class="px-4 py-3 text-right">
+      <%= link_to "トップに戻る", root_path, class: "font-bold text-blue-600" %>
   </nav>
   <main class="w-full flex flex-col h-screen" data-controller="messages">
     <div
       data-action="turbo:before-stream-render->messages#scroll" class="overflow-auto pb-20 px-4"
       data-messages-target="messages"
     >
-      <%= turbo_stream_from ChatRoom.last, :messages %>
+      <%= turbo_stream_from @chat_room, :messages %>
       <div id="messages" class="space-y-6" >
         <%= render @messages%>
       </div>

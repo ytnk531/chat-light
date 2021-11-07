@@ -5,8 +5,8 @@ class UsersController < ApplicationController
 
   def create
     @user = User.create!(user_params)
-    session[:user_id] = @user.id
-    redirect_to chat_room_path
+    cookies.encrypted[:user_id] = @user.id
+    redirect_to new_chat_room_path
   end
 
   private
