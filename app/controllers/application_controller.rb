@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
   def current_user
-    User.find(session[:user_id])
+    User.find(cookies.encrypted[:user_id])
   end
 end
