@@ -5,17 +5,29 @@ class ChatRoomsController < ApplicationController
     @message = Message.new
   end
 
-  def new
-    return render 'wait' if already_waiting(current_user)
+  # def new
+  #   return render 'wait' if already_waiting(current_user)
 
-    waiting_channel = Redis.current.spop('wait')
-    if waiting_channel
-      room = ChatRoom.create!
-      ActionCable.server.broadcast waiting_channel, chat_room_path(room)
-      redirect_to chat_room_path(room)
+  #   pp Redis.current.smembers('wait')
+  #   waiting_channel = Redis.current.spop('wait')
+  #   if waiting_channel
+  #     room = ChatRoom.create!
+  #     ActionCable.server.broadcast waiting_channel, chat_room_path(room)
+  #     redirect_to chat_room_path(room)
+  #   else
+  #     Redis.current.sadd('wait', current_user.wait_key)
+  #     render 'wait'
+  #   end
+  #   pp Redis.current.smembers('wait')
+  # end
+
+  def new
+    room = ChatRoom.last
+    if room.waiting?
+      room.broadcast('go to room')
     else
-      Redis.current.sadd('wait', current_user.wait_key)
-      render 'wait'
+      room = ChatRoom.create!
+
     end
   end
 
