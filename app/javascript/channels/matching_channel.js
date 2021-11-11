@@ -1,7 +1,10 @@
 import consumer from 'channels/consumer'
 
-consumer.subscriptions.create({ channel: "MatchingChannel" }, {
-    received(data) {
-        location.href = data;
-    }
+document.addEventListener('turbo:load', () => {
+    consumer.connection.reopen()
+    consumer.subscriptions.create({ channel: "MatchingChannel" }, {
+        received(data) {
+            location.href = data;
+        }
+    })
 })
