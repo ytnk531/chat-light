@@ -1,24 +1,14 @@
 # README
+ActionCableとTurboとStimulusを利用したチャットアプリケーションです。
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## TODO
+- [ ] コメントする前からお互いの名前がわかるようにする
+- [ ] 待機中の見た目を華やかにする
+- [ ] レスポンシブ対応
+- [ ] 部屋に戻ってこれるようにする
+- [ ] 部屋のURLを推測しにくくする
+- [ ] ID未設定ならトップに飛ばす
 
-Things you may want to cover:
+## actioncable.esm.js
+ActionCableのgemパッケージの中にactioncable.esm.jsが含まれていないので、gitリポジトリからファイルをコピーして使っています。
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
